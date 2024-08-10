@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart' hide Router;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pantrythief/locator.dart';
+import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/router.dart';
 
 void main() {
-  setupLocator();
-
-  runApp(const PantryThief());
+  initializeDependencies();
+  runApp(const ProviderScope(child: PantryThief()));
 }
 
 class PantryThief extends StatelessWidget {

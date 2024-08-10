@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pantrythief/ui/screens/ingredients_view.dart';
-import 'package:pantrythief/ui/screens/recipes_view.dart';
-import 'package:pantrythief/ui/screens/shopping_list_view.dart';
+import 'package:pantrythief/ui/widgets/templates/ingredients_view.dart';
+import 'package:pantrythief/ui/widgets/templates/recipes_view.dart';
+import 'package:pantrythief/ui/pages/shopping_list_view.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 
 class BottomAppBar extends StatelessWidget {

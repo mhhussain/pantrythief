@@ -2,19 +2,19 @@ import 'package:equatable/equatable.dart';
 
 class IngredientEntity extends Equatable {
   final String name;
-  final String amount;
-  final String unit;
+  final int amount;
+  final String units;
 
   const IngredientEntity({
     required this.name,
     required this.amount,
-    required this.unit,
+    required this.units,
   });
 
   @override
   List<Object?> get props => [
     name,
     amount,
-    unit,
+    units,
   ];
 }

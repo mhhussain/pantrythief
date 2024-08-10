@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart' hide BottomAppBar;
-import 'package:pantrythief/core/models/ingredient.dart' as model;
+import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
+import 'package:pantrythief/ui/widgets/molecules/add_ingredient_dialog.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
 import 'package:pantrythief/ui/widgets/organisms/ingredients_list.dart';
 import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
@@ -16,14 +17,32 @@ class IngredientsView extends StatefulWidget {
 }
 
 class _IngredientsViewState extends State<IngredientsView> {
-  IList<model.Ingredient> ingredients = IList<model.Ingredient>.from([const model.Ingredient(name: 'Milk', amount: '1', unit: 'gallon')]);
+  IList<IngredientModel> ingredients = IList<IngredientModel>.from([IngredientModel(name: 'Milk', amount: 1, units: 'gallon')]);
 
   @override
   void initState() {
     // retrieve ingredients list from shared_preferences
-    ingredients = ingredients.appendElement(const model.Ingredient(name: 'Salt', amount: '10', unit: 'grams'));
+    ingredients = ingredients.appendElement(IngredientModel(name: 'Salt', amount: 3, units: 'grams'));
 
     super.initState();
+  }
+
+  void addIngredient(String name, int amount, String unit) {
+    final newIngredient  = IngredientModel(
+      name: name,
+      amount: amount,
+      units: unit
+    );
+
+    setState(() {
+      ingredients = ingredients.appendElement(newIngredient);
+    });
+  }
+
+  void removeIngredient(String name) {
+    setState(() {
+      ingredients = ingredients.filter((ingredient) => ingredient.name != name);
+    });
   }
 
   @override
@@ -39,9 +58,19 @@ class _IngredientsViewState extends State<IngredientsView> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  IngredientsList(ingredients: ingredients),
+                  IngredientsList(
+                    ingredients: ingredients,
+                    onDelete: removeIngredient,
+                  ),
+                  const SizedBox(height: 25.0,),
+                  TextField(decoration: InputDecoration(hintText: 'name'),),
                   AddCircleButton(
-                    onTap: () {print('TODO:implement');},
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => AddIngredientDialog(
+                        onAdd: addIngredient,
+                      ),
+                    ),
                   )
                 ],
               ),

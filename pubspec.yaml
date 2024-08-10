@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   
+  flutter_hooks:
   cupertino_icons:
   google_fonts:
   dartz:
@@ -19,6 +20,8 @@ dependencies:
   flutter_bloc:
   get_it:
   shared_preferences:
+  flutter_riverpod:
+  riverpod_annotation:
 
 
 dev_dependencies:
@@ -28,6 +31,9 @@ dev_dependencies:
   mockito:
   mocktail:
   bloc_test:
+  riverpod_generator:
+  custom_lint:
+  riverpod_lint:
 
   flutter_lints: ^4.0.0
 
