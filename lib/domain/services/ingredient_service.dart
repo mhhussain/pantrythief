@@ -3,4 +3,8 @@ import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 
 abstract class IngredientService {
   Future<DataState<List<IngredientEntity>>> getIngredients();
+
+  Future<DataState<void>> addIngredient(IngredientEntity ingredient);
+
+  Future<DataState<void>> removeIngredient(IngredientEntity ingredient);
 }

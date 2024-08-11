@@ -7,6 +7,14 @@ class IngredientModel extends IngredientEntity {
     required super.units,
   });
 
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'name': name,
+      'amount': amount,
+      'units': units,
+    };
+  }
+
   factory IngredientModel.fromJson(Map<String, dynamic> map) {
     return IngredientModel(
       name: map['name'],

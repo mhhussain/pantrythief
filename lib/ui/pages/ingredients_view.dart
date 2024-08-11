@@ -58,19 +58,10 @@ class _IngredientsViewState extends State<IngredientsView> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  IngredientsList(
-                    ingredients: ingredients,
-                    onDelete: removeIngredient,
-                  ),
                   const SizedBox(height: 25.0,),
                   TextField(decoration: InputDecoration(hintText: 'name'),),
                   AddCircleButton(
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => AddIngredientDialog(
-                        onAdd: addIngredient,
-                      ),
-                    ),
+                    onTap: () {}
                   )
                 ],
               ),

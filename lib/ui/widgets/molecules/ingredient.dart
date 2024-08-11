@@ -5,7 +5,7 @@ import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 
 class Ingredient extends StatelessWidget {
   final IngredientEntity ingredient;
-  final Function(String) onDelete;
+  final Function(IngredientEntity) onDelete;
   
   const Ingredient({
     super.key,
@@ -39,7 +39,7 @@ class Ingredient extends StatelessWidget {
             TextTitle(ingredient.name),
             TextSmall('${ingredient.amount} ${ingredient.units}'),
             GestureDetector(
-              onTap: () => onDelete(ingredient.name),
+              onTap: () => onDelete(ingredient),
               child: Icon(
                 Icons.delete,
                 color: Theme.of(context).primaryColor,

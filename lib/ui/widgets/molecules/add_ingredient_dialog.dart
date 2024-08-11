@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/ui/widgets/atoms/pt_button.dart';
 
 class AddIngredientDialog extends HookWidget {
-  final Function(String, int, String) onAdd;
+  final Function(IngredientEntity) onAdd;
 
   const AddIngredientDialog({
     super.key,
@@ -61,7 +62,12 @@ class AddIngredientDialog extends HookWidget {
               PTButton(
                 text: 'Add',
                 onTap: () {
-                  onAdd(nameController.text, int.parse(amountController.text), unitController.text);
+                  final ingredient = IngredientEntity(
+                    name: nameController.text,
+                    amount: int.parse(amountController.text),
+                    units: unitController.text
+                  );
+                  onAdd(ingredient);
                   Navigator.of(context).pop();
                 }
               ),
