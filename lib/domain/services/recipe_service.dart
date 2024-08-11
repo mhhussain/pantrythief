@@ -3,4 +3,5 @@ import 'package:pantrythief/domain/entities/recipes_entity.dart';
 
 abstract class RecipeService {
   Future<DataState<List<RecipeEntity>>> getRecipes();
+  Future<DataState<void>> addRecipe(RecipeEntity recipe);
 }

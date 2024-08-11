@@ -1,12 +1,27 @@
+import 'dart:convert';
+
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
 
 class RecipeModel extends RecipeEntity {
+
+  // Not sure how necessary this is
+  @override
+  List<IngredientModel> ingredients;
+
   RecipeModel({
     required super.name,
-    required super.ingredients,
+    required this.ingredients,
     required super.instructions,
-  });
+  }) : super(ingredients: ingredients);
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'name': name,
+      'ingredients': ingredients.map((i) => i.toJson()).toList(),
+      'instructions': instructions,
+    };
+  }
 
   factory RecipeModel.fromJson(Map<String, dynamic> map) {
     return RecipeModel(
