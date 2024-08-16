@@ -17,12 +17,15 @@ class RecipeApi {
     ];
   }
 
+  Future<RecipeModel> getRecipeByName(String name) async {
+    final recipesList = await getRecipes();
+    return recipesList.where((r) => r.name == name).single;
+  }
+
   Future<void> addRecipe(RecipeModel recipe) async {
     final instance = await SharedPreferences.getInstance();
     final recipesList = instance.getStringList(key) ?? [];
-
-    print(recipe.toJson());
-
+    
     recipesList.add(base64.encode(utf8.encode(json.encode(recipe.toJson()))));
     
     await instance.setStringList(key, recipesList);

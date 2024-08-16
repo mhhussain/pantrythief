@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
-import 'package:pantrythief/domain/usecases/add_ingredient_usecase.dart';
-import 'package:pantrythief/domain/usecases/remove_ingredient_usecase.dart';
+import 'package:pantrythief/domain/usecases/ingredient/add_ingredient_usecase.dart';
+import 'package:pantrythief/domain/usecases/ingredient/remove_ingredient_usecase.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/molecules/add_ingredient_dialog.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
 import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
-import 'package:pantrythief/domain/usecases/get_ingredients_usecase.dart';
+import 'package:pantrythief/domain/usecases/ingredient/get_ingredients_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/ingredients_view_model.dart';
-import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 
 class IngredientsView extends StatefulWidget {

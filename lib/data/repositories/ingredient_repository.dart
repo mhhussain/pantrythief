@@ -24,6 +24,12 @@ class IngredientRepository implements IngredientService {
   }
 
   @override
+  Future<DataState<void>> updateIngredient(IngredientEntity ingredient) async {
+    await _ingredientApi.updateIngredient(IngredientModel(name: ingredient.name, amount: ingredient.amount, units: ingredient.units));
+    return const DataSuccess(true);
+  }
+
+  @override
   Future<DataState<void>> removeIngredient(IngredientEntity ingredient) async {
     await _ingredientApi.removeIngredient(IngredientModel(name: ingredient.name, amount: ingredient.amount, units: ingredient.units));
     return const DataSuccess(true);

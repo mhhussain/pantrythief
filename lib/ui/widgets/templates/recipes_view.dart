@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
-import 'package:pantrythief/domain/usecases/add_recipe_usecase.dart';
-import 'package:pantrythief/domain/usecases/get_recipes_usecase.dart';
+import 'package:pantrythief/domain/usecases/recipe/add_recipe_usecase.dart';
+import 'package:pantrythief/domain/usecases/recipe/get_recipes_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/recipes_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
@@ -7,9 +6,9 @@ class RecipeModel extends RecipeEntity {
 
   // Not sure how necessary this is
   @override
-  List<IngredientModel> ingredients;
+  final List<IngredientModel> ingredients;
 
-  RecipeModel({
+  const RecipeModel({
     required super.name,
     required this.ingredients,
     required super.instructions,

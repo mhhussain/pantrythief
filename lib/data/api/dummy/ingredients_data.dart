@@ -1,5 +1,4 @@
 import 'package:pantrythief/data/models/ingredient_model.dart';
-import 'package:pantrythief/data/models/recipe_model.dart';
 
 class DummyIngredientsData {
   Future<List<IngredientModel>> getIngredients() async {

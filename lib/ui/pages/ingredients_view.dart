@@ -2,11 +2,7 @@ import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
-import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
-import 'package:pantrythief/ui/widgets/molecules/add_ingredient_dialog.dart';
-import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
-import 'package:pantrythief/ui/widgets/organisms/ingredients_list.dart';
 import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
 
 class IngredientsView extends StatefulWidget {
