@@ -27,13 +27,18 @@ class RecipeRepository implements RecipeService {
 
   @override
   Future<DataState<void>> addRecipe(RecipeEntity recipe) async {
-    await _recipeApi.addRecipe(RecipeModel(
-      name: recipe.name,
-      ingredients: recipe.ingredients.map((i) => IngredientModel(name: i.name, amount: i.amount, units: i.units)).toList(),
-      instructions: recipe.instructions
-    ));
+    try {
+      await _recipeApi.addRecipe(RecipeModel(
+        name: recipe.name,
+        ingredients: recipe.ingredients.map((i) => IngredientModel(name: i.name, amount: i.amount, units: i.units)).toList(),
+        instructions: recipe.instructions
+      ));
 
-    return DataSuccess(true);
+      return const DataSuccess(null);
+
+    } on Exception catch (e) {
+      return DataFailed(e);
+    }
   }
 
   @override
@@ -44,13 +49,13 @@ class RecipeRepository implements RecipeService {
       instructions: recipe.instructions
     ));
 
-    return DataSuccess(true);
+    return const DataSuccess(null);
   }
   
   @override
-  Future<DataState<void>> removeRecipe(RecipeEntity recipe) async {
-    await _recipeApi.removeRecipe(RecipeModel(name: recipe.name, ingredients: [], instructions: recipe.instructions));
+  Future<DataState<void>> removeRecipe(RecipeModel recipe) async {
+    await _recipeApi.removeRecipe(recipe);
 
-    return DataSuccess(true);
+    return const DataSuccess(null);
   }
 }

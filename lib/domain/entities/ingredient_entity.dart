@@ -11,6 +11,15 @@ class IngredientEntity extends Equatable {
     required this.units,
   });
 
+  IngredientEntity operator +(covariant IngredientEntity ingredient) {
+    return IngredientEntity(name: name, amount: amount, units: units);
+  }
+
+  add(IngredientEntity ingredient) {
+    if (name != ingredient.name) throw 'mismatched ingredient name';
+    return IngredientEntity(name: name, amount: amount + ingredient.amount, units: units);
+  }
+
   @override
   List<Object?> get props => [
     name,

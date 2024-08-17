@@ -4,7 +4,8 @@ import 'package:pantrythief/domain/entities/recipes_entity.dart';
 
 class RecipeModel extends RecipeEntity {
 
-  // Not sure how necessary this is
+  // Not sure how necessary this is, however I get a 
+  // compilation error without it...
   @override
   final List<IngredientModel> ingredients;
 

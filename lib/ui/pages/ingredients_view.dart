@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
-import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
+import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 
 class IngredientsView extends StatefulWidget {
   const IngredientsView({super.key});

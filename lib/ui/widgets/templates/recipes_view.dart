@@ -8,7 +8,7 @@ import 'package:pantrythief/ui/view_models/recipes_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
-import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
+import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 
 class RecipesView extends StatefulWidget {
   const RecipesView({super.key});

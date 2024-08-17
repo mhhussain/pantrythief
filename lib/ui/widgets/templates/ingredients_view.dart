@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
+import 'package:pantrythief/core/resources/data_state.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/usecases/ingredient/add_ingredient_usecase.dart';
 import 'package:pantrythief/domain/usecases/ingredient/remove_ingredient_usecase.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/molecules/add_ingredient_dialog.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
-import 'package:pantrythief/ui/widgets/shared/bottom_app_bar.dart';
+import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 import 'package:pantrythief/domain/usecases/ingredient/get_ingredients_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/ingredients_view_model.dart';
@@ -34,10 +35,13 @@ class _IngredientsViewState extends State<IngredientsView> {
 
   Future<void> _loadData() async {
     final ingredients = await _getIngredientsUseCase();
-    setState(() {
-      model = IngredientsViewModel(ingredients: ingredients.data!);
-      isLoading = false;
-    });
+    
+    if (ingredients is DataSuccess) {
+      setState(() {
+        model = IngredientsViewModel(ingredients: ingredients.data!);
+        isLoading = false;
+      });
+    }
   }
 
   Future<void> _addIngredient(IngredientEntity ingredient) async {
