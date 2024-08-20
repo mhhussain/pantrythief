@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 
 class IngredientEntity extends Equatable {
   final String name;
   final int amount;
-  final String units;
+  // final String units;
+  final IngredientUnit units;
 
   const IngredientEntity({
     required this.name,

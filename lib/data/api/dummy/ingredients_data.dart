@@ -1,3 +1,4 @@
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/data/models/ingredient_model.dart';
 
 class DummyIngredientsData {
@@ -6,42 +7,42 @@ class DummyIngredientsData {
       IngredientModel(
         name: 'Chicken',
         amount: 1,
-        units: 'pound'
+        units: IngredientUnit.pound,
       ),
       IngredientModel(
         name: 'Gosht',
         amount: 1,
-        units: 'pound'
+        units: IngredientUnit.pound,
       ),
       IngredientModel(
         name: 'Salt',
         amount: 999,
-        units: 'tbsp'
+        units: IngredientUnit.teaspoon,
       ),
       IngredientModel(
         name: 'Garam Masala',
         amount: 50,
-        units: 'tea'
+        units: IngredientUnit.teaspoon,
       ),
       IngredientModel(
         name: 'Milk',
         amount: 1,
-        units: 'gallon'
+        units: IngredientUnit.gallon,
       ),
       IngredientModel(
         name: 'Cream',
         amount: 4,
-        units: 'cups'
+        units: IngredientUnit.cup,
       ),
       IngredientModel(
         name: 'Rice',
         amount: 2000,
-        units: 'grams'
+        units: IngredientUnit.gram,
       ),
       IngredientModel(
         name: 'Tomato Paste',
-        amount: 1,
-        units: 'can'
+        amount: 300,
+        units: IngredientUnit.gram,
       ),
     ];
   }

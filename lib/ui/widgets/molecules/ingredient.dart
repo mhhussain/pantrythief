@@ -37,7 +37,7 @@ class Ingredient extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextTitle(ingredient.name),
-            TextSmall('${ingredient.amount} ${ingredient.units}'),
+            TextSmall('${ingredient.amount} ${ingredient.units.name}'),
             GestureDetector(
               onTap: () => onDelete(ingredient),
               child: Icon(

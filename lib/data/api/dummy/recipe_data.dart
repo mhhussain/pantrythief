@@ -1,3 +1,4 @@
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/data/models/recipe_model.dart';
 
@@ -9,12 +10,12 @@ class DummyRecipeData {
         IngredientModel(
           name: 'Butter',
           amount: 3,
-          units: 'tbsp'
+          units: IngredientUnit.tablespoon,
         ),
         IngredientModel(
           name: 'Chicken',
           amount: 1,
-          units: 'pound'
+          units: IngredientUnit.pound,
         ),
       ],
       instructions: 'Mix everything and nuke it'
@@ -25,12 +26,12 @@ class DummyRecipeData {
         IngredientModel(
           name: 'Rice',
           amount: 300,
-          units: 'grams'
+          units: IngredientUnit.gram,
         ),
         IngredientModel(
           name: 'Chicken',
           amount: 1,
-          units: 'pound'
+          units: IngredientUnit.pound,
         ),
       ],
       instructions: 'nuke it all'

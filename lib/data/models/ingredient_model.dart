@@ -1,3 +1,4 @@
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 
 class IngredientModel extends IngredientEntity {
@@ -11,7 +12,7 @@ class IngredientModel extends IngredientEntity {
     return <String, dynamic>{
       'name': name,
       'amount': amount,
-      'units': units,
+      'units': units.name,
     };
   }
 
@@ -19,7 +20,7 @@ class IngredientModel extends IngredientEntity {
     return IngredientModel(
       name: map['name'],
       amount: map['amount'],
-      units: map['units'],
+      units: IngredientUnit.fromString(map['units']),
     );
   }
 }

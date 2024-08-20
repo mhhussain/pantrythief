@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
 import 'package:pantrythief/domain/usecases/recipe/add_recipe_usecase.dart';
@@ -46,8 +47,8 @@ class _RecipesViewState extends State<RecipesView> {
     await _addRecipeUseCase(params: const RecipeEntity(
       name: 'Butter Chicken',
       ingredients: [
-        IngredientEntity(name: 'Butter', amount: 3, units: 'tbsp'),
-        IngredientEntity(name: 'Chicken', amount: 2, units: 'pound'),
+        IngredientEntity(name: 'Butter', amount: 3, units: IngredientUnit.gram),
+        IngredientEntity(name: 'Chicken', amount: 2, units: IngredientUnit.pound),
       ],
       instructions: 'Cook it!'
     ));
@@ -88,7 +89,7 @@ class _RecipesViewState extends State<RecipesView> {
                       children: [
                         ...r.ingredients.map((i) => Row(
                           children: [
-                            TextSmall('${i.name} - ${i.amount} ${i.units}'),
+                            TextSmall('${i.name} - ${i.amount} ${i.units.name}'),
                           ],
                         ))
                       ],

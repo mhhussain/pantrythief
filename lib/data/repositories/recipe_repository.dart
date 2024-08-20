@@ -53,8 +53,8 @@ class RecipeRepository implements RecipeService {
   }
   
   @override
-  Future<DataState<void>> removeRecipe(RecipeModel recipe) async {
-    await _recipeApi.removeRecipe(recipe);
+  Future<DataState<void>> removeRecipe(RecipeEntity recipe) async {
+    await _recipeApi.removeRecipe(RecipeModel(name: recipe.name, ingredients: [], instructions: ''));
 
     return const DataSuccess(null);
   }

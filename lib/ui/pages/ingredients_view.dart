@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart' hide BottomAppBar;
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
@@ -13,17 +14,17 @@ class IngredientsView extends StatefulWidget {
 }
 
 class _IngredientsViewState extends State<IngredientsView> {
-  IList<IngredientModel> ingredients = IList<IngredientModel>.from([IngredientModel(name: 'Milk', amount: 1, units: 'gallon')]);
+  IList<IngredientModel> ingredients = IList<IngredientModel>.from([IngredientModel(name: 'Milk', amount: 1, units: IngredientUnit.gallon)]);
 
   @override
   void initState() {
     // retrieve ingredients list from shared_preferences
-    ingredients = ingredients.appendElement(IngredientModel(name: 'Salt', amount: 3, units: 'grams'));
+    ingredients = ingredients.appendElement(IngredientModel(name: 'Salt', amount: 3, units: IngredientUnit.gram));
 
     super.initState();
   }
 
-  void addIngredient(String name, int amount, String unit) {
+  void addIngredient(String name, int amount, IngredientUnit unit) {
     final newIngredient  = IngredientModel(
       name: name,
       amount: amount,

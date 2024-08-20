@@ -6,9 +6,9 @@ abstract class RecipeService {
 
   Future<DataState<RecipeEntity>> getRecipeByName(String name);
 
-  Future<DataState<void>> addRecipe(covariant RecipeEntity recipe);
+  Future<DataState<void>> addRecipe(RecipeEntity recipe);
 
-  Future<DataState<void>> updateRecipe(covariant RecipeEntity recipe);
+  Future<DataState<void>> updateRecipe(RecipeEntity recipe);
   
-  Future<DataState<void>> removeRecipe(covariant RecipeEntity recipe);
+  Future<DataState<void>> removeRecipe(RecipeEntity recipe);
 }
