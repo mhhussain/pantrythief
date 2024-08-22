@@ -5,7 +5,7 @@ import 'package:pantrythief/domain/usecases/ingredient/add_ingredient_usecase.da
 import 'package:pantrythief/domain/usecases/ingredient/remove_ingredient_usecase.dart';
 import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
 import 'package:pantrythief/ui/widgets/molecules/add_ingredient_dialog.dart';
-import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
+import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
 import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 import 'package:pantrythief/domain/usecases/ingredient/get_ingredients_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
@@ -73,26 +73,37 @@ class _IngredientsViewState extends State<IngredientsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextTitle('Ingredients'),
+        leadingWidth: 0,
+        centerTitle: false,
+        title: const TextTitle('ingredients'),
       ),
       body: Center(
-        child: Column(
-          children: [
-            ...model.ingredients.map((i) => Ingredient(
-              ingredient: i,
-              onDelete: (s) {
-                _removeIngredient(s);
-              }
-            )),
-            AddCircleButton(
-              onTap: () => showDialog(
-                context: context,
-                builder: (context) => AddIngredientDialog(
-                  onAdd: _addIngredient,
-                )
-              ),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14.0, 50.0, 14.0, 0.0),
+          child: Column(
+            children: [
+              ...model.ingredients.map((i) => IngredientListItem(
+                ingredient: i,
+                onDelete: (IngredientEntity i) {
+                  _removeIngredient(i);
+                }
+              )),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add',
+        shape: const CircleBorder(),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (context) => AddIngredientDialog(
+            onAdd: (IngredientEntity i) => _addIngredient(i),
+          )
         ),
       ),
       bottomNavigationBar: const BottomAppBar(current: 0,),

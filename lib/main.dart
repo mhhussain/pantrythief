@@ -10,6 +10,11 @@ void main() {
 }
 
 class PantryThief extends StatelessWidget {
+  final Map<String, Color> palette = const {
+    'background': Color(0xFF404040),
+    'primary': Color(0xFFC13779),
+    'primary-accent': Color(0xFFFFAAAA),
+  };
   final primaryColor = const Color(0xFFC13779);
 
   const PantryThief({super.key});
@@ -21,45 +26,57 @@ class PantryThief extends StatelessWidget {
       initialRoute: '/ingredients',
       onGenerateRoute: Router.generateRoute,
       theme: ThemeData(
-        primaryColor: primaryColor,
+        primaryColor: palette['primary']!,
         textTheme: TextTheme(
           titleLarge: GoogleFonts.roboto(
-            color: Colors.black,
+            color: palette['primary-accent']!,
+            fontWeight: FontWeight.w700,
+            fontSize: 28,
+          ),
+          titleMedium: GoogleFonts.roboto(
+            color: palette['primary-accent']!,
             fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
           bodyLarge: GoogleFonts.roboto(
-            color: primaryColor,
+            color: palette['primary']!,
             fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
           bodyMedium: GoogleFonts.roboto(
-            color: primaryColor,
+            color: palette['primary']!,
             fontWeight: FontWeight.w700,
-            fontSize: 18,
+            fontSize: 16,
           ),
           bodySmall: GoogleFonts.roboto(
-            color: Colors.black,
+            color: palette['primary-accent']!,
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: 14,
           ),
           // button
           labelLarge: GoogleFonts.roboto(
-            color: Colors.white,
+            color: palette['primary-accent']!,
             fontWeight: FontWeight.w700,
-            fontSize: 20,
+            fontSize: 24,
           ),
         ),
         colorScheme: ColorScheme(
           brightness: Brightness.dark,
           error: Colors.red,
-          onError: Colors.white,
-          surface: Colors.white,
-          onSurface: Colors.white,
-          primary: primaryColor,
-          onPrimary: Colors.white,
-          secondary: const Color(0xFF666666),
-          onSecondary: Colors.white,
+          onError: palette['primary-accent']!,
+          surface: palette['background']!,
+          onSurface: palette['background']!,
+          primary: palette['primary']!,
+          onPrimary: palette['primary-accent']!,
+          secondary: palette['primary-accent']!,
+          onSecondary: palette['primary-accent']!,
+        ),
+        dividerColor: palette['primary-accent']!.withOpacity(0.35),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: palette['primary-accent']!
+        ),
+        iconTheme: IconThemeData(
+          color: palette['primary-accent']!
         ),
       ),
     );

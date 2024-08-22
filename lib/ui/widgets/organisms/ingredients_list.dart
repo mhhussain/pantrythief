@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
-import 'package:pantrythief/ui/widgets/molecules/ingredient.dart';
+import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
 
 class IngredientsList extends StatelessWidget {
   final IList<IngredientModel> ingredients;
@@ -17,7 +17,7 @@ class IngredientsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: ingredients.map((i) => Ingredient(ingredient: i, onDelete: onDelete,)).toList(),
+      children: ingredients.map((i) => IngredientListItem(ingredient: i, onDelete: onDelete,)).toList(),
     );
   }
 }
