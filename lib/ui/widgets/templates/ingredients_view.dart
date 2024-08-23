@@ -38,9 +38,6 @@ class _IngredientsViewState extends State<IngredientsView> {
 
   Future<void> _loadData() async {
     final ingredients = await _getIngredientsUseCase();
-
-    print(ingredients.data![0].units.name);
-    print(ingredients.data![0].units.to(IngredientUnit.milligram));
     
     if (ingredients is DataSuccess) {
       setState(() {

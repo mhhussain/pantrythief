@@ -6,6 +6,7 @@ import 'package:pantrythief/ui/widgets/atoms/pt_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_medium.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
+import 'package:pantrythief/ui/widgets/atoms/toggle_textfield.dart';
 import 'package:pantrythief/ui/widgets/organisms/edit_ingredient_view.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredients_list.dart';
 
@@ -27,6 +28,7 @@ class RecipeView extends HookWidget {
   Widget build(BuildContext context) {
     final recipe = useState<RecipeEntity>(initState);
     final selectedIngredient = useState<IngredientEntity>(ingredientsList[0]);
+    final instructionsController = useTextEditingController(text: initState.instructions);
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -93,9 +95,10 @@ class RecipeView extends HookWidget {
             hint: const TextSmall('Select unit'),
           ),
           const SizedBox(height: 30.0),
-          const TextMedium('instructions'),
-          const SizedBox(height: 10.0),
-          TextSmall(recipe.value.instructions),
+          // const TextMedium('instructions'),
+          // const SizedBox(height: 10.0),
+          // TextSmall(recipe.value.instructions),
+          ToggleTextField(textController: instructionsController,),
           const SizedBox(height: 20.0),
           recipe.value != initState ?
             PTButton(
