@@ -13,7 +13,6 @@ import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/ingredients_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredients_list.dart';
-import 'package:units_converter/units_converter.dart';
 
 class IngredientsView extends StatefulWidget {
   const IngredientsView({super.key});
