@@ -47,14 +47,14 @@ class EditIngredientView extends HookWidget {
           TextLarge(ingredient.units.name),
           const SizedBox(height: 25.0),
           PTButton(
-            text: 'Save',
+            text: 'update',
             onTap: () {
               save(IngredientEntity(
                 name: ingredient.name,
                 amount: int.parse(amountController.text),
                 units: ingredient.units,
               ));
-              
+
               Navigator.of(context).pop();
             },
           ),

@@ -5,6 +5,7 @@ import 'package:pantrythief/domain/entities/recipes_entity.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_medium.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
+import 'package:pantrythief/ui/widgets/molecules/edit_ingredient_view.dart';
 import 'package:pantrythief/ui/widgets/organisms/ingredients_list.dart';
 
 class RecipeView extends HookWidget {
@@ -41,7 +42,24 @@ class RecipeView extends HookWidget {
           ),
           IngredientsList(
             ingredients: recipe.value.ingredients.toList(),
-            onTap: (IngredientEntity s) {},
+            onTap: (IngredientEntity s) {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => EditIngredientView(
+                  ingredient: s,
+                  // save: (IngredientEntity s) => _updateIngredient(s),
+                  save: (IngredientEntity s) {
+                    final newState = RecipeEntity(
+                      name: recipe.value.name,
+                      ingredients: [...recipe.value.ingredients.where((i) => i.name != s.name), s],
+                      instructions: recipe.value.instructions,
+                    );
+
+                    recipe.value = newState;
+                  },
+                )
+              );
+            },
             onDelete: (s) {
               final newState = RecipeEntity(
                 name: recipe.value.name,

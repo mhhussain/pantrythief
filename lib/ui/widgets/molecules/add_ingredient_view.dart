@@ -27,7 +27,7 @@ class AddIngredientView extends HookWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('Add new ingredient'),
+          const Text('add new ingredient'),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
@@ -81,7 +81,7 @@ class AddIngredientView extends HookWidget {
             hint: const TextSmall('Select unit'),
           ),
           PTButton(
-            text: 'Add',
+            text: 'add',
             onTap: () {
               final ingredient = IngredientEntity(
                 name: nameController.text,
