@@ -22,7 +22,7 @@ dependencies:
   shared_preferences:
   flutter_riverpod:
   riverpod_annotation:
-
+  units_converter:
 
 dev_dependencies:
   flutter_test:

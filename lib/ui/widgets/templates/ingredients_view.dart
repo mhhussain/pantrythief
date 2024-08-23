@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
+import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/core/resources/data_state.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/usecases/ingredient/add_ingredient_usecase.dart';
 import 'package:pantrythief/domain/usecases/ingredient/remove_ingredient_usecase.dart';
 import 'package:pantrythief/domain/usecases/ingredient/update_ingredient_usecase.dart';
-import 'package:pantrythief/ui/widgets/atoms/add_circle_button.dart';
-import 'package:pantrythief/ui/widgets/molecules/add_ingredient_view.dart';
-import 'package:pantrythief/ui/widgets/molecules/edit_ingredient_view.dart';
-import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
+import 'package:pantrythief/ui/widgets/organisms/add_ingredient_view.dart';
+import 'package:pantrythief/ui/widgets/organisms/edit_ingredient_view.dart';
 import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 import 'package:pantrythief/domain/usecases/ingredient/get_ingredients_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/ingredients_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
-import 'package:pantrythief/ui/widgets/organisms/ingredients_list.dart';
+import 'package:pantrythief/ui/widgets/molecules/ingredients_list.dart';
+import 'package:units_converter/units_converter.dart';
 
 class IngredientsView extends StatefulWidget {
   const IngredientsView({super.key});
@@ -39,6 +39,9 @@ class _IngredientsViewState extends State<IngredientsView> {
 
   Future<void> _loadData() async {
     final ingredients = await _getIngredientsUseCase();
+
+    print(ingredients.data![0].units.name);
+    print(ingredients.data![0].units.to(IngredientUnit.milligram));
     
     if (ingredients is DataSuccess) {
       setState(() {
@@ -113,29 +116,10 @@ class _IngredientsViewState extends State<IngredientsView> {
               _removeIngredient(i);
             },
           ),
-          // child: Column(
-          //   children: [
-          //     ...model.ingredients.map((i) => IngredientListItem(
-          //       ingredient: i,
-          //       onTap: (IngredientEntity i) {
-          //         showModalBottomSheet(
-          //           context: context,
-          //           builder: (context) => EditIngredientView(
-          //             ingredient: i,
-          //             save: (IngredientEntity s) => _updateIngredient(s),
-          //           )
-          //         );
-          //       },
-          //       onDelete: (IngredientEntity i) {
-          //         _removeIngredient(i);
-          //       }
-          //     )),
-          //   ],
-          // ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Add',
+        tooltip: 'add',
         shape: const CircleBorder(),
         child: const Icon(
           Icons.add,

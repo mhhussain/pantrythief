@@ -1,3 +1,5 @@
+import 'package:units_converter/units_converter.dart';
+
 enum IngredientUnit {
   unknown,
   gallon,
@@ -82,12 +84,43 @@ enum IngredientUnit {
     }
   }
 
+  dynamic get conversionUnit {
+    switch (this) {
+      case (IngredientUnit.gallon):
+        return VOLUME.usGallons;
+      case (IngredientUnit.quart):
+        return VOLUME.usQuarts;
+      case (IngredientUnit.pint):
+        return VOLUME.usPints;
+      case (IngredientUnit.cup):
+        return VOLUME.cups;
+      case (IngredientUnit.teaspoon):
+        return VOLUME.teaspoonsUs;
+      case (IngredientUnit.tablespoon):
+        return VOLUME.tablespoonsUs;
+      case (IngredientUnit.fluidounce):
+        return VOLUME.usFluidOunces;
+      case (IngredientUnit.milliliter):
+        return VOLUME.milliliters;
+      case (IngredientUnit.liter):
+        return VOLUME.liters;
+      case (IngredientUnit.ounce):
+        return MASS.ounces;
+      case (IngredientUnit.gram):
+        return MASS.grams;
+      case (IngredientUnit.milligram):
+        return MASS.milligrams;
+      case (IngredientUnit.pound):
+        return MASS.pounds;
+      case (IngredientUnit.unknown):
+        return null;
+      default:
+        return null;
+    }
+  }
+
   double to(IngredientUnit i) {
-    Map<IngredientUnit, Map<IngredientUnit, double>> conversionChart = {
-      IngredientUnit.gallon: { IngredientUnit.quart: 4, IngredientUnit.cup: IngredientUnit.quart.to(IngredientUnit.cup) },
-      IngredientUnit.quart: { IngredientUnit.cup: 4 },
-      IngredientUnit.cup: {}
-    };
-    return conversionChart[this]![i]!;
+    // return conversionChart[this]![i]!;
+    return 1.convertFromTo(conversionUnit, i.conversionUnit)!;
   }
 }

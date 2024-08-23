@@ -954,6 +954,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  units_converter:
+    dependency: "direct main"
+    description:
+      name: units_converter
+      sha256: "90b96869527398a1b836cf5bc4f54432d5d9ded81026e817a01eaf3562d53309"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   uuid:
     dependency: transitive
     description:

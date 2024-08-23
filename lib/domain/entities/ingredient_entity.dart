@@ -4,7 +4,6 @@ import 'package:pantrythief/core/enum/ingredient_unit.dart';
 class IngredientEntity extends Equatable {
   final String name;
   final int amount;
-  // final String units;
   final IngredientUnit units;
 
   const IngredientEntity({
@@ -13,13 +12,30 @@ class IngredientEntity extends Equatable {
     required this.units,
   });
 
-  IngredientEntity operator +(covariant IngredientEntity ingredient) {
-    return IngredientEntity(name: name, amount: amount, units: units);
+  IngredientEntity operator +(IngredientEntity ingredient) {
+    if (name != ingredient.name) throw 'mismatched ingredient name';
+    return IngredientEntity(
+      name: name,
+      amount: (amount + (units == ingredient.units ? ingredient.amount : ingredient.to(units).amount)).clamp(0, double.nan).floor(),
+      units: units
+    );
   }
 
-  add(IngredientEntity ingredient) {
+  IngredientEntity operator -(IngredientEntity ingredient) {
     if (name != ingredient.name) throw 'mismatched ingredient name';
-    return IngredientEntity(name: name, amount: amount + ingredient.amount, units: units);
+    return IngredientEntity(
+      name: name,
+      amount: (amount - (units == ingredient.units ? ingredient.amount : ingredient.to(units).amount)).clamp(0, double.nan).floor(),
+      units: units
+    );
+  }
+
+  IngredientEntity to(IngredientUnit newUnit) {
+    return IngredientEntity(
+      name: name,
+      amount: (amount * units.to(newUnit)).floor(),
+      units: newUnit,
+    );
   }
 
   @override
