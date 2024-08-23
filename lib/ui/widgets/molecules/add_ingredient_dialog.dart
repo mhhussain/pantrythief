@@ -68,16 +68,6 @@ class AddIngredientDialog extends HookWidget {
                 isExpanded: true,
                 hint: const TextSmall('Select unit'),
               ),
-              // TextField(
-              //   controller: unitController,
-              //   decoration: const InputDecoration(
-              //     border: OutlineInputBorder(),
-              //     enabledBorder: OutlineInputBorder(),
-              //     labelText: 'unit',
-              //     hintText: 'unit',
-              //     fillColor: Colors.grey
-              //   ),
-              // ),
               PTButton(
                 text: 'Add',
                 onTap: () {

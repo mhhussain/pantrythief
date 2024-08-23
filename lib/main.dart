@@ -39,12 +39,12 @@ class PantryThief extends StatelessWidget {
             fontSize: 20,
           ),
           bodyLarge: GoogleFonts.roboto(
-            color: palette['primary']!,
+            color: palette['primary-accent']!,
             fontWeight: FontWeight.w700,
             fontSize: 20,
           ),
           bodyMedium: GoogleFonts.roboto(
-            color: palette['primary']!,
+            color: palette['primary-accent']!,
             fontWeight: FontWeight.w700,
             fontSize: 16,
           ),

@@ -81,4 +81,13 @@ enum IngredientUnit {
         return 'unknown';
     }
   }
+
+  double to(IngredientUnit i) {
+    Map<IngredientUnit, Map<IngredientUnit, double>> conversionChart = {
+      IngredientUnit.gallon: { IngredientUnit.quart: 4, IngredientUnit.cup: IngredientUnit.quart.to(IngredientUnit.cup) },
+      IngredientUnit.quart: { IngredientUnit.cup: 4 },
+      IngredientUnit.cup: {}
+    };
+    return conversionChart[this]![i]!;
+  }
 }

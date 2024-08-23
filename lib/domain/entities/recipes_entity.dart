@@ -14,6 +14,7 @@ class RecipeEntity extends Equatable {
 
   @override
   List<Object?> get props => [
+    name,
     ingredients,
     instructions,
   ];

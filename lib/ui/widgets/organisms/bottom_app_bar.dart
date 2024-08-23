@@ -33,18 +33,18 @@ class BottomAppBar extends StatelessWidget {
             );
         }
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
           label: '',
-          icon: TextTitle('I')
+          icon: Icon(Icons.food_bank, color: Theme.of(context).iconTheme.color),
         ),
         BottomNavigationBarItem(
           label: '',
-          icon: TextTitle('R')
+          icon: Icon(Icons.list_alt, color: Theme.of(context).iconTheme.color),
         ),
         BottomNavigationBarItem(
           label: '',
-          icon: TextTitle('S')
+          icon: Icon(Icons.shopping_cart, color: Theme.of(context).iconTheme.color),
         )
       ]
     );

@@ -1,11 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:pantrythief/data/models/ingredient_model.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
 
 class IngredientsList extends StatelessWidget {
-  final IList<IngredientModel> ingredients;
+  final List<IngredientEntity> ingredients;
   final Function(IngredientEntity) onDelete;
 
   const IngredientsList({
