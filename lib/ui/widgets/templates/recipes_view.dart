@@ -2,12 +2,12 @@ import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
+import 'package:pantrythief/domain/usecases/ingredient/get_ingredients_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/add_recipe_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/get_recipes_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/update_recipe_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/recipes_view_model.dart';
-import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 import 'package:pantrythief/ui/widgets/molecules/recipe_list_item.dart';
 import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
@@ -23,10 +23,12 @@ class RecipesView extends StatefulWidget {
 class _RecipesViewState extends State<RecipesView> {
   bool isLoading = true;
   
-  RecipesViewModel model = RecipesViewModel(recipes: []);
+  RecipesViewModel model = RecipesViewModel(recipes: [], ingredients: []);
   final GetRecipesUseCase _getRecipesUseCase = locator<GetRecipesUseCase>();
   final AddRecipeUseCase _addRecipeUseCase = locator<AddRecipeUseCase>();
   final UpdateRecipeUseCase _updateRecipeUseCase = locator<UpdateRecipeUseCase>();
+
+  final GetIngredientsUseCase _getIngredientsUseCase = locator<GetIngredientsUseCase>();
 
   @override
   void initState() {
@@ -36,8 +38,12 @@ class _RecipesViewState extends State<RecipesView> {
 
   Future<void> _loadData() async {
     final recipes = await _getRecipesUseCase();
+    final ingredients = await _getIngredientsUseCase();
     setState(() {
-      model = RecipesViewModel(recipes: recipes.data!);
+      model = RecipesViewModel(
+        recipes: recipes.data!,
+        ingredients: ingredients.data!,
+      );
       isLoading = false;
     });
   }
@@ -58,7 +64,10 @@ class _RecipesViewState extends State<RecipesView> {
     final updatedRecipes = await _getRecipesUseCase();
 
     setState(() {
-      model = RecipesViewModel(recipes: updatedRecipes.data!);
+      model = RecipesViewModel(
+        recipes: updatedRecipes.data!,
+        ingredients: model.ingredients,
+      );
       isLoading = false;
     });
   }
@@ -73,7 +82,10 @@ class _RecipesViewState extends State<RecipesView> {
     final updatedRecipes = await _getRecipesUseCase();
 
     setState(() {
-      model = RecipesViewModel(recipes: updatedRecipes.data!);
+      model = RecipesViewModel(
+        recipes: updatedRecipes.data!,
+        ingredients: model.ingredients,
+      );
       isLoading = false;
     });
   }
@@ -104,6 +116,7 @@ class _RecipesViewState extends State<RecipesView> {
                       expand: false,
                       builder: (context, scrollController) => RecipeView(
                         initState: i,
+                        ingredientsList: model.ingredients,
                         save: (RecipeEntity s) {
                           _saveRecipe(s);
                         }

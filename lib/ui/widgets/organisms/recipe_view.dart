@@ -1,8 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:get_it/get_it.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
@@ -12,11 +9,13 @@ import 'package:pantrythief/ui/widgets/organisms/ingredients_list.dart';
 
 class RecipeView extends HookWidget {
   final RecipeEntity initState;
+  final List<IngredientEntity> ingredientsList;
   final Function(RecipeEntity) save;
 
   const RecipeView({
     super.key,
     required this.initState,
+    required this.ingredientsList,
     required this.save,
   });
 
@@ -33,7 +32,13 @@ class RecipeView extends HookWidget {
         children: [
           const TextSmall('recipes >'),
           const SizedBox(height: 20.0),
-          TextLarge(recipe.value.name),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextLarge(recipe.value.name),
+              TextLarge('${ingredientsList.length} (${0} with cart)'),
+            ],
+          ),
           IngredientsList(
             ingredients: recipe.value.ingredients.toList(),
             onDelete: (s) {
