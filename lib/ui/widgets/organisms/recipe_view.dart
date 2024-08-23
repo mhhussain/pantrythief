@@ -41,13 +41,13 @@ class RecipeView extends HookWidget {
           ),
           IngredientsList(
             ingredients: recipe.value.ingredients.toList(),
+            onTap: (IngredientEntity s) {},
             onDelete: (s) {
               final newState = RecipeEntity(
                 name: recipe.value.name,
                 ingredients: recipe.value.ingredients.where((r) => r.name != s.name).toList(),
                 instructions: recipe.value.instructions
               );
-
               save(newState);
               recipe.value = newState;
             },

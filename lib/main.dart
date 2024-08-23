@@ -15,7 +15,6 @@ class PantryThief extends StatelessWidget {
     'primary': Color(0xFFC13779),
     'primary-accent': Color(0xFFFFAAAA),
   };
-  final primaryColor = const Color(0xFFC13779);
 
   const PantryThief({super.key});
 
@@ -27,6 +26,7 @@ class PantryThief extends StatelessWidget {
       onGenerateRoute: Router.generateRoute,
       theme: ThemeData(
         primaryColor: palette['primary']!,
+        primaryColorLight: palette['primary-accent'],
         textTheme: TextTheme(
           titleLarge: GoogleFonts.roboto(
             color: palette['primary-accent']!,
