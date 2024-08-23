@@ -98,7 +98,16 @@ class RecipeView extends HookWidget {
           // const TextMedium('instructions'),
           // const SizedBox(height: 10.0),
           // TextSmall(recipe.value.instructions),
-          ToggleTextField(textController: instructionsController,),
+          ToggleTextField(
+            textController: instructionsController,
+            onEdit: (String instructions) {
+              recipe.value = RecipeEntity(
+                name: recipe.value.name,
+                ingredients: recipe.value.ingredients,
+                instructions: instructions,
+              );
+            }
+          ),
           const SizedBox(height: 20.0),
           recipe.value != initState ?
             PTButton(
