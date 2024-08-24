@@ -100,7 +100,7 @@ class RecipeView extends HookWidget {
           // TextSmall(recipe.value.instructions),
           ToggleTextField(
             textController: instructionsController,
-            onEdit: (String instructions) {
+            onEditFinish: (String instructions) {
               recipe.value = RecipeEntity(
                 name: recipe.value.name,
                 ingredients: recipe.value.ingredients,
