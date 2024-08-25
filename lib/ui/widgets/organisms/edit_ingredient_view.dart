@@ -19,9 +19,7 @@ class EditIngredientView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ingredient = useState<IngredientEntity>(initState);
-
     final amountController = useTextEditingController(text: ingredient.value.amount.toString());
-    final selectedUnit = useState<IngredientUnit>(ingredient.value.units);
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -54,7 +52,7 @@ class EditIngredientView extends HookWidget {
           DropdownButton<IngredientUnit>(
             borderRadius: BorderRadius.circular(4.0),
             menuMaxHeight: MediaQuery.of(context).size.height * 0.35,
-            value: selectedUnit.value,
+            value: ingredient.value.units,
             items: IngredientUnit.values.map((i) => DropdownMenuItem<IngredientUnit>(
               value: i,
               child: TextSmall(i.name),
@@ -65,6 +63,7 @@ class EditIngredientView extends HookWidget {
                 amount: (ingredient.value.amount * ingredient.value.units.to(u!)).floor(),
                 units: u,
               );
+              amountController.text = ingredient.value.amount.toString();
             },
             isExpanded: true,
             hint: const TextSmall('Select unit'),

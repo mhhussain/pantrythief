@@ -47,6 +47,7 @@ class AddIngredientView extends HookWidget {
             ),
           ),
           TextField(
+            keyboardType: const TextInputType.numberWithOptions(),
             controller: amountController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
