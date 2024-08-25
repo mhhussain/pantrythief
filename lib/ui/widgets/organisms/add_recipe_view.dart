@@ -104,7 +104,7 @@ class AddRecipeView extends HookWidget {
               showModalBottomSheet(
                 context: context,
                 builder: (context) => EditIngredientView(
-                  ingredient: s,
+                  initState: s,
                   save: (IngredientEntity s1) {
                     recipe.value = RecipeEntity(
                       name: recipe.value.name,

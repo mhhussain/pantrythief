@@ -103,7 +103,7 @@ class _IngredientsViewState extends State<IngredientsView> {
               showModalBottomSheet(
                 context: context,
                 builder: (context) => EditIngredientView(
-                  ingredient: i,
+                  initState: i,
                   save: (IngredientEntity s) => _updateIngredient(s),
                 )
               );
