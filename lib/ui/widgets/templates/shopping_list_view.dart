@@ -4,6 +4,7 @@ import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/usecases/shopping_list/add_to_shopping_list_usecase.dart';
 import 'package:pantrythief/domain/usecases/shopping_list/get_shopping_list_usecase.dart';
 import 'package:pantrythief/domain/usecases/shopping_list/remove_from_shopping_list_usecase.dart';
+import 'package:pantrythief/domain/usecases/shopping_list/transfer_to_ingredients_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/shopping_list_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
@@ -26,6 +27,7 @@ class _ShoppingListViewState extends State<ShoppingListView> {
   GetShoppingListUsecase _getShoppingListUsecase = locator<GetShoppingListUsecase>();
   AddToShoppingListUsecase _addToShoppingListUsecase = locator<AddToShoppingListUsecase>();
   RemoveFromShoppingListUsecase _removeFromShoppingListUsecase = locator<RemoveFromShoppingListUsecase>();
+  TransferToIngredientsUsecase _transferToIngredientsUsecase = locator<TransferToIngredientsUsecase>();
 
   @override
   void initState() {
@@ -72,6 +74,20 @@ class _ShoppingListViewState extends State<ShoppingListView> {
     });
   }
 
+  Future<void> _transferToIngredients(IngredientEntity ingredient) async {
+    setState(() {
+      isLoading = true;
+    });
+
+    await _transferToIngredientsUsecase(params: ingredient);
+    final updatedShoppingList = await _getShoppingListUsecase();
+
+    setState(() {
+      model = ShoppingListViewModel(shoppinglist: updatedShoppingList.data!);
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +103,7 @@ class _ShoppingListViewState extends State<ShoppingListView> {
             ingredients: model.shoppinglist,
             onTap: (IngredientEntity i) { /* NO EDIT FUNCTION */},
             onDelete: (IngredientEntity i) => _removeFromShoppingList(i),
+            onTransfer: (IngredientEntity i) => _transferToIngredients(i),
           ),
         ),
       ),
@@ -102,8 +119,8 @@ class _ShoppingListViewState extends State<ShoppingListView> {
             context: context,
             builder: (context) => AddIngredientView(
               onAdd: (IngredientEntity i) => _addToShoppingList(i),
-            )
-          )
+            ),
+          ),
         },
       ),
       bottomNavigationBar: const BottomAppBar(current: 2,),

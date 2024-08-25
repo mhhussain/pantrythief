@@ -5,13 +5,15 @@ import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 class IngredientListItem extends StatelessWidget {
   final IngredientEntity ingredient;
   final Function(IngredientEntity)? onTap;
-  final Function(IngredientEntity) onDelete;
+  final Function(IngredientEntity)? onDelete;
+  final Function(IngredientEntity)? onTransfer;
   
   const IngredientListItem({
     super.key,
     required this.ingredient,
     this.onTap,
-    required this.onDelete,
+    this.onDelete,
+    this.onTransfer,
   });
 
   @override
@@ -35,8 +37,15 @@ class IngredientListItem extends StatelessWidget {
             const Spacer(),
             TextSmall('${ingredient.amount} ${ingredient.units.name}'),
             const SizedBox(width: 10.0),
+            onTransfer != null ?
+              GestureDetector(
+                onTap: () => onTransfer!(ingredient),
+                child: const Icon(Icons.upload_outlined)
+              ) :
+              const SizedBox(),
+            const SizedBox(width: 10.0),
             GestureDetector(
-              onTap: () => onDelete(ingredient),
+              onTap: () => onDelete!(ingredient),
               child: const Icon(Icons.remove_circle_outline),
             )
           ],

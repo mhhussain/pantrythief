@@ -4,14 +4,16 @@ import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
 
 class IngredientsList extends StatelessWidget {
   final List<IngredientEntity> ingredients;
-  final Function(IngredientEntity) onTap;
-  final Function(IngredientEntity) onDelete;
+  final Function(IngredientEntity)? onTap;
+  final Function(IngredientEntity)? onDelete;
+  final Function(IngredientEntity)? onTransfer;
 
   const IngredientsList({
     super.key,
-    required this.onTap,
     required this.ingredients,
-    required this.onDelete,
+    this.onTap,
+    this.onDelete,
+    this.onTransfer,
   });
 
   @override
@@ -21,6 +23,7 @@ class IngredientsList extends StatelessWidget {
         ingredient: i,
         onTap: onTap,
         onDelete: onDelete,
+        onTransfer: onTransfer,
       )).toList(),
     );
   }
