@@ -19,7 +19,7 @@ class IngredientModel extends IngredientEntity {
   factory IngredientModel.fromJson(Map<String, dynamic> map) {
     return IngredientModel(
       name: map['name'],
-      amount: map['amount'],
+      amount: double.parse( map['amount'].toString()),
       units: IngredientUnit.fromString(map['units']),
     );
   }

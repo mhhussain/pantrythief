@@ -19,7 +19,7 @@ class EditIngredientView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ingredient = useState<IngredientEntity>(initState);
-    final amountController = useTextEditingController(text: ingredient.value.amount.toString());
+    final amountController = useTextEditingController(text: ingredient.value.amount.toStringAsFixed(2));
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -60,10 +60,10 @@ class EditIngredientView extends HookWidget {
             onChanged: (IngredientUnit? u) {
               ingredient.value = IngredientEntity(
                 name: ingredient.value.name,
-                amount: (ingredient.value.amount * ingredient.value.units.to(u!)).floor(),
+                amount: (ingredient.value.amount * ingredient.value.units.to(u!)),
                 units: u,
               );
-              amountController.text = ingredient.value.amount.toString();
+              amountController.text = ingredient.value.amount.toStringAsFixed(2);
             },
             isExpanded: true,
             hint: const TextSmall('Select unit'),
@@ -74,7 +74,7 @@ class EditIngredientView extends HookWidget {
             onTap: () {
               save(IngredientEntity(
                 name: ingredient.value.name,
-                amount: int.parse(amountController.text),
+                amount: double.parse(amountController.text),
                 units: ingredient.value.units,
               ));
 

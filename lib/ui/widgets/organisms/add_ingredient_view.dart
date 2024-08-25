@@ -86,7 +86,7 @@ class AddIngredientView extends HookWidget {
             onTap: () {
               final ingredient = IngredientEntity(
                 name: nameController.text,
-                amount: int.parse(amountController.text),
+                amount: double.parse(amountController.text),
                 units: selectedUnit.value,
               );
               onAdd(ingredient);
