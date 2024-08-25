@@ -9,9 +9,9 @@ import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/recipes_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
 import 'package:pantrythief/ui/widgets/molecules/recipe_list_item.dart';
-import 'package:pantrythief/ui/widgets/organisms/add_recipe_view.dart';
+import 'package:pantrythief/ui/widgets/templates/add_recipe_view.dart';
 import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
-import 'package:pantrythief/ui/widgets/organisms/recipe_view.dart';
+import 'package:pantrythief/ui/widgets/templates/recipe_view.dart';
 
 class RecipesView extends StatefulWidget {
   const RecipesView({super.key});
