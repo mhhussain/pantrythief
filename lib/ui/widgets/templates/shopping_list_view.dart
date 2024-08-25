@@ -102,8 +102,20 @@ class _ShoppingListViewState extends State<ShoppingListView> {
           child: IngredientsList(
             ingredients: model.shoppinglist,
             onTap: (IngredientEntity i) { /* NO EDIT FUNCTION */},
-            onDelete: (IngredientEntity i) => _removeFromShoppingList(i),
-            onTransfer: (IngredientEntity i) => _transferToIngredients(i),
+            onDelete: (IngredientEntity i) {
+              _removeFromShoppingList(i);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: TextSmall('deleted'),
+                backgroundColor: Colors.red,
+              ));
+            },
+            onTransfer: (IngredientEntity i) {
+              _transferToIngredients(i);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: TextSmall('transfered'),
+                backgroundColor: Colors.green,
+              ));
+            },
           ),
         ),
       ),
