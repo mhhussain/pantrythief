@@ -12,7 +12,6 @@ class IngredientRepository implements IngredientService {
   @override
   Future<DataState<List<IngredientModel>>> getIngredients() async {
     final data = await _ingredientApi.getIngredients();
-
     return DataSuccess(data);
   }
 

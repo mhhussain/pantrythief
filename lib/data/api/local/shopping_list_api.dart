@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pantrythief/data/models/ingredient_model.dart';
 
-class IngredientApi {
+class ShoppingListApi {
   static const String key = 'DB.SHOPPINGLIST';
 
   Future<List<IngredientModel>> getIngredients() async {
