@@ -105,12 +105,10 @@ class _IngredientsViewState extends State<IngredientsView> {
                 builder: (context) => EditIngredientView(
                   initState: i,
                   save: (IngredientEntity s) => _updateIngredient(s),
-                )
+                ),
               );
             },
-            onDelete: (IngredientEntity i) {
-              _removeIngredient(i);
-            },
+            onDelete: (IngredientEntity i) => _removeIngredient(i),
           ),
         ),
       ),
