@@ -94,7 +94,7 @@ class _ShoppingListViewState extends State<ShoppingListView> {
       appBar: AppBar(
         leadingWidth: 0,
         centerTitle: false,
-        title: const TextTitle('Shopping List'),
+        title: const TextTitle('shopping list'),
       ),
       body: Center(
         child: Padding(
