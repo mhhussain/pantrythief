@@ -25,9 +25,10 @@ class AddIngredientView extends HookWidget {
       height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.all(20.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('add new ingredient'),
+          const Text('add new ingredient >'),
+          const SizedBox(height: 20.0),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
@@ -46,6 +47,7 @@ class AddIngredientView extends HookWidget {
               fillColor: Colors.white
             ),
           ),
+          const SizedBox(height: 10.0),
           TextField(
             keyboardType: const TextInputType.numberWithOptions(),
             controller: amountController,
@@ -65,6 +67,7 @@ class AddIngredientView extends HookWidget {
               fillColor: Colors.white
             ),
           ),
+          const SizedBox(height: 10.0),
           DropdownButton<IngredientUnit>(
             borderRadius: BorderRadius.circular(4.0),
             menuMaxHeight: MediaQuery.of(context).size.height * 0.35,
@@ -81,6 +84,7 @@ class AddIngredientView extends HookWidget {
             isExpanded: true,
             hint: const TextSmall('Select unit'),
           ),
+          const SizedBox(height: 20.0),
           PTButton(
             text: 'add',
             onTap: () {

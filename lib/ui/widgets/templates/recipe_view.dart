@@ -4,7 +4,6 @@ import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/entities/recipes_entity.dart';
 import 'package:pantrythief/ui/widgets/atoms/pt_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
-import 'package:pantrythief/ui/widgets/atoms/text_medium.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/toggle_textfield.dart';
 import 'package:pantrythief/ui/widgets/organisms/edit_ingredient_view.dart';
@@ -95,9 +94,6 @@ class RecipeView extends HookWidget {
             hint: const TextSmall('Select unit'),
           ),
           const SizedBox(height: 30.0),
-          // const TextMedium('instructions'),
-          // const SizedBox(height: 10.0),
-          // TextSmall(recipe.value.instructions),
           ToggleTextField(
             textController: instructionsController,
             onEditFinish: (String instructions) {

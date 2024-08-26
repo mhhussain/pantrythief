@@ -121,6 +121,10 @@ enum IngredientUnit {
 
   double to(IngredientUnit i) {
     // return conversionChart[this]![i]!;
-    return 1.convertFromTo(conversionUnit, i.conversionUnit)!;
+    try {
+      return 1.convertFromTo(conversionUnit, i.conversionUnit)!;
+    } catch(e) {
+      return 1.0;
+    }
   }
 }

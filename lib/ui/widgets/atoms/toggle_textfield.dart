@@ -26,6 +26,8 @@ class ToggleTextField extends HookWidget {
         TextField(
           controller: textController,
           focusNode: focusNode,
+          minLines: 3,
+          maxLines: 7,
           onTapOutside: (_) {
             toggle.value = !toggle.value;
             onEditFinish(textController.text);

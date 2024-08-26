@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
-import 'package:pantrythief/core/enum/ingredient_unit.dart';
 import 'package:pantrythief/core/resources/data_state.dart';
 import 'package:pantrythief/domain/entities/ingredient_entity.dart';
 import 'package:pantrythief/domain/usecases/ingredient/add_ingredient_usecase.dart';
