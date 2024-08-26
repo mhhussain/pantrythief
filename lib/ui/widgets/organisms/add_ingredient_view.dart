@@ -31,6 +31,9 @@ class AddIngredientView extends HookWidget {
           const SizedBox(height: 20.0),
           TextField(
             controller: nameController,
+            onTapOutside: (e) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
@@ -51,6 +54,9 @@ class AddIngredientView extends HookWidget {
           TextField(
             keyboardType: const TextInputType.numberWithOptions(),
             controller: amountController,
+            onTapOutside: (e) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
