@@ -35,7 +35,7 @@ class IngredientListItem extends StatelessWidget {
           children: [
             TextSmall(ingredient.name),
             const Spacer(),
-            TextSmall('${ingredient.amount} ${ingredient.units.name}'),
+            TextSmall('${ingredient.amountFormatted} ${ingredient.units.name}'),
             const SizedBox(width: 10.0),
             onTransfer != null ?
               GestureDetector(

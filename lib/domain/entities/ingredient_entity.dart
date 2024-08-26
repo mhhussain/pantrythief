@@ -12,6 +12,9 @@ class IngredientEntity extends Equatable {
     required this.units,
   });
 
+  double get amountFormatted { return double.parse(amount.toStringAsPrecision(3)); }
+
+
   IngredientEntity operator +(IngredientEntity ingredient) {
     if (name != ingredient.name) throw 'mismatched ingredient name';
     return IngredientEntity(
