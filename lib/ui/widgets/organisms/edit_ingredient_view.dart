@@ -35,6 +35,10 @@ class EditIngredientView extends HookWidget {
               keyboardType: const TextInputType.numberWithOptions(),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 48),
+              controller: amountController,
+              onTapOutside: (e) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -45,7 +49,6 @@ class EditIngredientView extends HookWidget {
                   vertical: 60.0,
                 ),
               ),
-              controller: amountController,
             ),
           ),
           // TextLarge(ingredient.units.name),
