@@ -13,7 +13,11 @@ class TransferToIngredientsUsecase implements UseCase<DataState<void>, Ingredien
   @override
   Future<DataState<void>> call({IngredientEntity? params}) async {
     final existingIngredients = await _ingredientService.getIngredients();
-    final existingIngredient = existingIngredients.data!.where((i) => i.name == params!.name).first;
+    
+    // find existing ingredient and create a new one if not found
+    final existingIngredient =
+      existingIngredients.data!.where((i) => i.name == params!.name).firstOrNull ??
+      IngredientEntity(name: params!.name, amount: 0, units: params.units);
 
     final newIngredient = IngredientEntity(
       name: existingIngredient.name,
