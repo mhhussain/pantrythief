@@ -5,6 +5,7 @@ import 'package:pantrythief/domain/usecases/recipe/add_recipe_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/get_recipes_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/remove_recipe_usecase.dart';
 import 'package:pantrythief/domain/usecases/recipe/update_recipe_usecase.dart';
+import 'package:pantrythief/domain/usecases/shopping_list/get_shopping_list_usecase.dart';
 import 'package:pantrythief/injection_container.dart';
 import 'package:pantrythief/ui/view_models/recipes_view_model.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_title.dart';
@@ -23,13 +24,14 @@ class RecipesView extends StatefulWidget {
 class _RecipesViewState extends State<RecipesView> {
   bool isLoading = true;
   
-  RecipesViewModel model = RecipesViewModel(recipes: [], ingredients: []);
+  RecipesViewModel model = RecipesViewModel(recipes: [], ingredients: [], shoppinglist: []);
   final GetRecipesUseCase _getRecipesUseCase = locator<GetRecipesUseCase>();
   final AddRecipeUseCase _addRecipeUseCase = locator<AddRecipeUseCase>();
   final UpdateRecipeUseCase _updateRecipeUseCase = locator<UpdateRecipeUseCase>();
   final RemoveRecipeUseCase _removeRecipeUseCase = locator<RemoveRecipeUseCase>();
 
   final GetIngredientsUseCase _getIngredientsUseCase = locator<GetIngredientsUseCase>();
+  final GetShoppingListUsecase _getShoppingListUsecase = locator<GetShoppingListUsecase>();
 
   @override
   void initState() {
@@ -40,10 +42,13 @@ class _RecipesViewState extends State<RecipesView> {
   Future<void> _loadData() async {
     final recipes = await _getRecipesUseCase();
     final ingredients = await _getIngredientsUseCase();
+    final shoppinglist = await _getShoppingListUsecase();
+
     setState(() {
       model = RecipesViewModel(
         recipes: recipes.data!,
         ingredients: ingredients.data!,
+        shoppinglist: shoppinglist.data!,
       );
       isLoading = false;
     });
@@ -61,6 +66,7 @@ class _RecipesViewState extends State<RecipesView> {
       model = RecipesViewModel(
         recipes: updatedRecipes.data!,
         ingredients: model.ingredients,
+        shoppinglist: model.shoppinglist,
       );
       isLoading = false;
     });
@@ -79,6 +85,7 @@ class _RecipesViewState extends State<RecipesView> {
       model = RecipesViewModel(
         recipes: updatedRecipes.data!,
         ingredients: model.ingredients,
+        shoppinglist: model.shoppinglist,
       );
       isLoading = false;
     });
@@ -97,6 +104,7 @@ class _RecipesViewState extends State<RecipesView> {
       model = RecipesViewModel(
         recipes: updatedRecipes.data!,
         ingredients: model.ingredients,
+        shoppinglist: model.shoppinglist,
       );
       isLoading = false;
     });
@@ -117,6 +125,8 @@ class _RecipesViewState extends State<RecipesView> {
             children: [
               ...model.recipes.map((r) => RecipeListItem(
                 recipe: r,
+                ingredients: model.ingredients,
+                shoppinglist: model.shoppinglist,
                 onClick: (RecipeEntity i) {
                   showModalBottomSheet(
                     isScrollControlled: true,

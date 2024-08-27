@@ -41,6 +41,19 @@ class IngredientEntity extends Equatable {
     );
   }
 
+  IngredientEntity reduce(List<IngredientEntity> ingredients) {
+    final i = ingredients.where((i1) => name == i1.name).firstOrNull ?? IngredientEntity(name: name, amount: 0.0, units: units);
+    return IngredientEntity(
+      name: name,
+      amount: ((i.amount * i.units.to(units)) - amount),
+      units: units
+    );
+  }
+
+  IngredientEntity check(List<IngredientEntity> ingredients) {
+    return reduce(ingredients);
+  }
+
   @override
   List<Object?> get props => [
     name,

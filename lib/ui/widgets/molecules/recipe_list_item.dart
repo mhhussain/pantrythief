@@ -5,15 +5,28 @@ import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 
 class RecipeListItem extends StatelessWidget {
   final RecipeEntity recipe;
-  final List<IngredientEntity>? ingredients;
+  final List<IngredientEntity> ingredients;
+  final List<IngredientEntity> shoppinglist;
   final Function(RecipeEntity) onClick;
 
   const RecipeListItem({
     super.key,
     required this.recipe,
-    this.ingredients,
+    required this.ingredients,
+    required this.shoppinglist,
     required this.onClick,
   });
+
+  int reduceList(List<IngredientEntity> ingredientsList) {
+    var i = 0;
+    var r = recipe.check(ingredientsList);
+
+    while (r.length == ingredients.length) {
+      i++;
+      r = recipe.check(r);
+    }
+    return i;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +46,7 @@ class RecipeListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextSmall(recipe.name),
-            TextSmall('1'),
+            TextSmall('${reduceList(ingredients).toString()}x'),
           ],
         )
       ),

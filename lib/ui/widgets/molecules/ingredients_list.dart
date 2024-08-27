@@ -4,6 +4,8 @@ import 'package:pantrythief/ui/widgets/molecules/ingredient_list_item.dart';
 
 class IngredientsList extends StatelessWidget {
   final List<IngredientEntity> ingredients;
+  final List<IngredientEntity>? compareList1;
+  final List<IngredientEntity>? compareList2;
   final Function(IngredientEntity)? onTap;
   final Function(IngredientEntity)? onDelete;
   final Function(IngredientEntity)? onTransfer;
@@ -11,6 +13,8 @@ class IngredientsList extends StatelessWidget {
   const IngredientsList({
     super.key,
     required this.ingredients,
+    this.compareList1,
+    this.compareList2,
     this.onTap,
     this.onDelete,
     this.onTransfer,
