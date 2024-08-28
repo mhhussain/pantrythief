@@ -6,6 +6,7 @@ import 'package:pantrythief/ui/widgets/atoms/pt_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/toggle_textfield.dart';
+import 'package:pantrythief/ui/widgets/molecules/recipe_list_item.dart';
 import 'package:pantrythief/ui/widgets/organisms/edit_ingredient_view.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredients_list.dart';
 
@@ -33,95 +34,97 @@ class RecipeView extends HookWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TextSmall('recipes >'),
-          const SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextLarge(recipe.value.name),
-              TextLarge('${ingredientsList.length} (${0} with cart)'),
-            ],
-          ),
-          IngredientsList(
-            ingredients: recipe.value.ingredients.toList(),
-            onTap: (IngredientEntity s) {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) => EditIngredientView(
-                  initState: s,
-                  // save: (IngredientEntity s) => _updateIngredient(s),
-                  save: (IngredientEntity s) {
-                    final newState = RecipeEntity(
-                      name: recipe.value.name,
-                      ingredients: [...recipe.value.ingredients.where((i) => i.name != s.name), s],
-                      instructions: recipe.value.instructions,
-                    );
-
-                    recipe.value = newState;
-                  },
-                )
-              );
-            },
-            onDelete: (s) {
-              final newState = RecipeEntity(
-                name: recipe.value.name,
-                ingredients: recipe.value.ingredients.where((r) => r.name != s.name).toList(),
-                instructions: recipe.value.instructions
-              );
-              recipe.value = newState;
-            },
-          ),
-          const SizedBox(height: 20.0),
-          DropdownButton<IngredientEntity>(
-            borderRadius: BorderRadius.circular(4.0),
-            menuMaxHeight: MediaQuery.of(context).size.height * 0.35,
-            value: selectedIngredient.value,
-            items: ingredientsList.map((i) => DropdownMenuItem<IngredientEntity>(
-              value: i,
-              child: TextSmall(i.name),
-            )).toList(),
-            onChanged: (IngredientEntity? i) {
-              recipe.value = RecipeEntity(
-                name: recipe.value.name,
-                ingredients: [...recipe.value.ingredients, i!],
-                instructions: recipe.value.instructions
-              );
-            },
-            isExpanded: true,
-            hint: const TextSmall('Select unit'),
-          ),
-          const SizedBox(height: 30.0),
-          ToggleTextField(
-            textController: instructionsController,
-            onEditFinish: (String instructions) {
-              recipe.value = RecipeEntity(
-                name: recipe.value.name,
-                ingredients: recipe.value.ingredients,
-                instructions: instructions,
-              );
-            }
-          ),
-          const SizedBox(height: 20.0),
-          recipe.value != initState ?
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TextSmall('recipes >'),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextLarge(recipe.value.name),
+                TextLarge('x${recipe.value.reduce(ingredientsList)}'),
+              ],
+            ),
+            IngredientsList(
+              ingredients: recipe.value.ingredients.toList(),
+              onTap: (IngredientEntity s) {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => EditIngredientView(
+                    initState: s,
+                    // save: (IngredientEntity s) => _updateIngredient(s),
+                    save: (IngredientEntity s) {
+                      final newState = RecipeEntity(
+                        name: recipe.value.name,
+                        ingredients: [...recipe.value.ingredients.where((i) => i.name != s.name), s],
+                        instructions: recipe.value.instructions,
+                      );
+        
+                      recipe.value = newState;
+                    },
+                  )
+                );
+              },
+              onDelete: (s) {
+                final newState = RecipeEntity(
+                  name: recipe.value.name,
+                  ingredients: recipe.value.ingredients.where((r) => r.name != s.name).toList(),
+                  instructions: recipe.value.instructions
+                );
+                recipe.value = newState;
+              },
+            ),
+            const SizedBox(height: 20.0),
+            DropdownButton<IngredientEntity>(
+              borderRadius: BorderRadius.circular(4.0),
+              menuMaxHeight: MediaQuery.of(context).size.height * 0.35,
+              value: selectedIngredient.value,
+              items: ingredientsList.map((i) => DropdownMenuItem<IngredientEntity>(
+                value: i,
+                child: TextSmall(i.name),
+              )).toList(),
+              onChanged: (IngredientEntity? i) {
+                recipe.value = RecipeEntity(
+                  name: recipe.value.name,
+                  ingredients: [...recipe.value.ingredients, i!],
+                  instructions: recipe.value.instructions
+                );
+              },
+              isExpanded: true,
+              hint: const TextSmall('Select unit'),
+            ),
+            const SizedBox(height: 30.0),
+            ToggleTextField(
+              textController: instructionsController,
+              onEditFinish: (String instructions) {
+                recipe.value = RecipeEntity(
+                  name: recipe.value.name,
+                  ingredients: recipe.value.ingredients,
+                  instructions: instructions,
+                );
+              }
+            ),
+            const SizedBox(height: 20.0),
+            recipe.value != initState ?
+              PTButton(
+                text: 'save',
+                onTap: () {
+                  save(recipe.value);
+                  Navigator.of(context).pop();
+                }
+              ) : const SizedBox(),
+            const SizedBox(height: 10.0),
             PTButton(
-              text: 'save',
+              text: 'delete',
               onTap: () {
-                save(recipe.value);
+                delete(recipe.value);
                 Navigator.of(context).pop();
               }
-            ) : const SizedBox(),
-          const SizedBox(height: 10.0),
-          PTButton(
-            text: 'delete',
-            onTap: () {
-              delete(recipe.value);
-              Navigator.of(context).pop();
-            }
-          ),
-        ],
+            ),
+          ],
+        ),
       )
     );
   }
