@@ -17,17 +17,6 @@ class RecipeListItem extends StatelessWidget {
     required this.onClick,
   });
 
-  int reduceList(List<IngredientEntity> ingredientsList) {
-    var i = 0;
-    var r = recipe.check(ingredientsList);
-
-    while (r.length == ingredients.length) {
-      i++;
-      r = recipe.check(r);
-    }
-    return i;
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,7 +35,7 @@ class RecipeListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextSmall(recipe.name),
-            TextSmall('${reduceList(ingredients).toString()}x'),
+            TextSmall('${recipe.reduce(ingredients)}x'),
           ],
         )
       ),

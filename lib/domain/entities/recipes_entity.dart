@@ -12,16 +12,28 @@ class RecipeEntity extends Equatable {
     required this.instructions,
   });
 
-  List<IngredientEntity> reduce(List<IngredientEntity> ingredientsList) {
+  int reduce(List<IngredientEntity> ingredientsList) {
+    var i = 0;
+    var r = check(ingredientsList);
+
+    while (r.length == ingredientsList.length) {
+      i++;
+      r = check(r);
+    }
+
+    return i;
+  }
+
+  List<IngredientEntity> subtract(List<IngredientEntity> ingredientsList) {
     return ingredients.map((i) => i.reduce(ingredientsList)).toList();
   }
 
   List<IngredientEntity> check(List<IngredientEntity> ingredientsList) {
-    return reduce(ingredientsList).where((i) => i.amount > 0).toList();
+    return subtract(ingredientsList).where((i) => i.amount > 0).toList();
   }
 
   List<IngredientEntity> missing(List<IngredientEntity> ingredientsList) {
-    return reduce(ingredientsList).where((i) => i.amount < 0).toList();
+    return subtract(ingredientsList).where((i) => i.amount < 0).toList();
   }
 
   @override
