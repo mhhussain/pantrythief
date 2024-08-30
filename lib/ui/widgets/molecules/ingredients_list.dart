@@ -26,6 +26,8 @@ class IngredientsList extends StatelessWidget {
     return Column(
       children: ingredients.sorted((a, b) => a.name.compareTo(b.name)).map((i) => IngredientListItem(
         ingredient: i,
+        compare1: compareList1?.firstWhereOrNull((c) => c.name == i.name),
+        compare2: compareList2?.firstWhereOrNull((c) => c.name == i.name),
         onTap: onTap,
         onDelete: onDelete,
         onTransfer: onTransfer,
