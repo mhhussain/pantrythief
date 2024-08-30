@@ -13,6 +13,7 @@ import 'package:pantrythief/ui/widgets/molecules/recipe_list_item.dart';
 import 'package:pantrythief/ui/widgets/templates/add_recipe_view.dart';
 import 'package:pantrythief/ui/widgets/organisms/bottom_app_bar.dart';
 import 'package:pantrythief/ui/widgets/templates/recipe_view.dart';
+import 'package:collection/collection.dart';
 
 class RecipesView extends StatefulWidget {
   const RecipesView({super.key});
@@ -114,6 +115,7 @@ class _RecipesViewState extends State<RecipesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
         leadingWidth: 0,
         centerTitle: false,
         title: const TextTitle('recipes'),
@@ -123,7 +125,7 @@ class _RecipesViewState extends State<RecipesView> {
           padding: const EdgeInsets.fromLTRB(14.0, 50.0, 14.0, 0.0),
           child: Column(
             children: [
-              ...model.recipes.map((r) => RecipeListItem(
+              ...model.recipes.sorted((a, b) => a.name.compareTo(b.name)).map((r) => RecipeListItem(
                 recipe: r,
                 ingredients: model.ingredients,
                 shoppinglist: model.shoppinglist,
