@@ -89,6 +89,7 @@ class _IngredientsViewState extends State<IngredientsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
         leadingWidth: 0,
         centerTitle: false,
         title: const TextTitle('ingredients'),
