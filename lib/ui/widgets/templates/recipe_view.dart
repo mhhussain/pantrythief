@@ -48,6 +48,8 @@ class RecipeView extends HookWidget {
             ),
             IngredientsList(
               ingredients: recipe.value.ingredients.toList(),
+              compareList1: ingredientsList,
+              compareList2: [],
               onTap: (IngredientEntity s) {
                 showModalBottomSheet(
                   context: context,
@@ -62,6 +64,7 @@ class RecipeView extends HookWidget {
                       );
         
                       recipe.value = newState;
+                      save(recipe.value);
                     },
                   )
                 );
@@ -73,6 +76,7 @@ class RecipeView extends HookWidget {
                   instructions: recipe.value.instructions
                 );
                 recipe.value = newState;
+                save(recipe.value);
               },
             ),
             const SizedBox(height: 20.0),
@@ -90,6 +94,7 @@ class RecipeView extends HookWidget {
                   ingredients: [...recipe.value.ingredients, i!],
                   instructions: recipe.value.instructions
                 );
+                save(recipe.value);
               },
               isExpanded: true,
               hint: const TextSmall('Select unit'),
@@ -103,17 +108,10 @@ class RecipeView extends HookWidget {
                   ingredients: recipe.value.ingredients,
                   instructions: instructions,
                 );
+                save(recipe.value);
               }
             ),
             const SizedBox(height: 20.0),
-            recipe.value != initState ?
-              PTButton(
-                text: 'save',
-                onTap: () {
-                  save(recipe.value);
-                  Navigator.of(context).pop();
-                }
-              ) : const SizedBox(),
             const SizedBox(height: 10.0),
             PTButton(
               text: 'delete',
