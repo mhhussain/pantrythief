@@ -52,7 +52,7 @@ class AddIngredientView extends HookWidget {
           ),
           const SizedBox(height: 10.0),
           TextField(
-            keyboardType: const TextInputType.numberWithOptions(),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             controller: amountController,
             onTapOutside: (e) {
               FocusManager.instance.primaryFocus?.unfocus();

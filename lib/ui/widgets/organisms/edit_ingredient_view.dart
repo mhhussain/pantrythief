@@ -32,7 +32,7 @@ class EditIngredientView extends HookWidget {
             width: MediaQuery.of(context).size.width * 0.5,
             height: MediaQuery.of(context).size.width * 0.5,
             child: TextField(
-              keyboardType: const TextInputType.numberWithOptions(),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 48),
               controller: amountController,
