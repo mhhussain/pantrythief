@@ -15,6 +15,7 @@ dependencies:
   flutter_hooks:
   cupertino_icons:
   google_fonts:
+  collection:
   dartz:
   equatable:
   flutter_bloc:
