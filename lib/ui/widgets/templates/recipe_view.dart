@@ -6,7 +6,6 @@ import 'package:pantrythief/ui/widgets/atoms/pt_button.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_large.dart';
 import 'package:pantrythief/ui/widgets/atoms/text_small.dart';
 import 'package:pantrythief/ui/widgets/atoms/toggle_textfield.dart';
-import 'package:pantrythief/ui/widgets/molecules/recipe_list_item.dart';
 import 'package:pantrythief/ui/widgets/organisms/edit_ingredient_view.dart';
 import 'package:pantrythief/ui/widgets/molecules/ingredients_list.dart';
 
