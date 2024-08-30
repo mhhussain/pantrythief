@@ -16,7 +16,7 @@ class RecipeEntity extends Equatable {
     var i = 0;
     var r = check(ingredientsList);
 
-    while (r.length == ingredientsList.length) {
+    while (r.length == ingredients.length) {
       i++;
       r = check(r);
     }
@@ -29,7 +29,7 @@ class RecipeEntity extends Equatable {
   }
 
   List<IngredientEntity> check(List<IngredientEntity> ingredientsList) {
-    return subtract(ingredientsList).where((i) => i.amount > 0).toList();
+    return subtract(ingredientsList).where((i) => i.amount >= 0).toList();
   }
 
   List<IngredientEntity> missing(List<IngredientEntity> ingredientsList) {
